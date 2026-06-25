@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+   <PropertyGroup>
+      <TargetFramework>net35</TargetFramework>
+   </PropertyGroup>
+
+   <ItemGroup>
+      <ProjectReference Include="..\..\src\XUnity.AutoTranslator.Plugin.Core\XUnity.AutoTranslator.Plugin.Core.csproj" />
+      <ProjectReference Include="..\..\src\XUnity.Common\XUnity.Common.csproj" />
+   </ItemGroup>
+
+   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="if $(ConfigurationName) == Release (
+   XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(SolutionDir)dist\Translators\&quot;
+)" />
+   </Target>
+
+</Project>
